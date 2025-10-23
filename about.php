@@ -41,7 +41,7 @@
                     <div class="navbar-nav mx-auto py-0">
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="blog.php" class="nav-item nav-link">Blog</a>
+                        <a href="blog.php" class="nav-item nav-link">Activites</a>
                                            
                     </div>
                     <a href="Sign-In.php" class="btn btn-primary rounded-pill py-2 px-4 flex-shrink-0">Login</a>
@@ -73,32 +73,7 @@
                                         <div class="rounded mb-4">
                                             <img src="img/impo.jpg" class="img-fluid rounded w-100" alt="">
                                         </div>
-                                        <div class="row gx-4 gy-0">
-                                            <div class="col-6">
-                                                <div class="counter-item bg-primary rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-thumbs-up fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold" data-toggle="counter-up">150</span>
-                                                        <span class="h1 fw-bold text-white">K +</span>
-                                                    </div>
-                                                    <!-- <h5 class="text-white mb-0">Happy Visitors</h5> -->
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="counter-item bg-dark rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-certificate fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold" data-toggle="counter-up">122</span>
-                                                        <span class="h1 fw-bold text-white"> +</span>
-                                                    </div>
-                                                    <!-- <h5 class="text-white mb-0">Awwards Winning</h5> -->
-                                                </div>
-                                            </div>
-                                        </div>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -191,7 +166,6 @@
                                 <div class="d-flex justify-content-between border-bottom pb-4">
                                     <div class="text-start">
                                         <h4 class="mb-0">Ali Jado</h4>
-                                        <p class="mb-0">Profession</p>
                                     </div>
                                     <div>
                                         <img src="img/team-1.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
@@ -216,7 +190,6 @@
                                 <div class="d-flex justify-content-between border-bottom pb-4">
                                     <div class="text-start">
                                         <h4 class="mb-0">Rayan Dani</h4>
-                                        <p class="mb-0">Profession</p>
                                     </div>
                                     <div>
                                         <img src="img/team-2.jpg" class="img-fluid rounded" style="width: 100px; height: 100px;" alt="">
@@ -268,7 +241,7 @@
                             <h4 class="text-white mb-4">Liens</h4>
                             <a href="index.php"><i class="fas fa-angle-right me-2"></i> Home</a>
                             <a href="about.php"><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Blog</a>
+                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Activites</a>
                         </div>
                     </div>
                     

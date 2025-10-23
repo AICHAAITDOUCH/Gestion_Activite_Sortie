@@ -30,29 +30,22 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <html lang="en">
 
 <head>
-  <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Daschbord user</title>
-  <!-- plugins:css -->
+  <title>Daschbord </title>
   <link rel="stylesheet" href="../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="../../vendors/css/vendor.bundle.base.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
 
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
   <link rel="stylesheet" href="../../css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../../../img/logo.jpg" />
 
 </head>
 
 <body>
   <div class="container-scroller">
-    <!-- partial:../../partials/_navbar.html -->
+
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="../../index-user.php" style="font-size:x-large;"><img src="../../../img/logo.jpg" class="mr-2" alt="logo"/>ADA</a>
@@ -81,8 +74,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
+              <a class="dropdown-item" href="../../profile.php" >
+                <i class="fa-solid fa-user text-primary"></i>
                 Profile
               </a>
               <a class="dropdown-item" href="../connexion/logout.php">
@@ -96,35 +89,41 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
        
       </div>
     </nav>
-    <!-- partial -->
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
-   
-     
-      <!-- partial -->
-      <!-- partial:../../partials/_sidebar.html -->
+
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="../../index-user.php">
-              <i class="icon-grid menu-icon"></i>
+              <i class="fa-solid fa-grip mr-4"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
+              <i class="fa-solid fa-compass mr-4"></i>
               <span class="menu-title">Liste</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="../../pages/tables/table.php">Liste d'activite</a></li>
+                <li class="nav-item"> <a class="nav-link" href="../../pages/tables/table.php">Mes activites</a></li>
               </ul>
             </div>
           </li>
-        
+             <li class="nav-item">
+            <a class="nav-link" href="../connexion/logout.php">
+              <i class="fa-solid fa-user mr-4"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="../connexion/logout.php">
+                <i class="ti-power-off mr-4"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
      
         </ul>
       </nav>

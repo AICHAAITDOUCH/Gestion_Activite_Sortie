@@ -32,19 +32,16 @@ if ($id_utilisateur == 0) {
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Daschbord</title>
-  <!-- plugins:css -->
+
   <link rel="stylesheet" href="vendors/feather/feather.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" href="vendors/css/vendor.bundle.base.css">
-  <!-- endinject -->
-  <!-- Plugin css for this page -->
+ 
   <link rel="stylesheet" href="vendors/datatables.net-bs4/dataTables.bootstrap4.css">
   <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
-  <!-- End plugin css for this page -->
-  <!-- inject:css -->
+  
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-  <!-- endinject -->
   <link rel="shortcut icon" href="../img/logo.jpg" />
 
   <style>
@@ -91,7 +88,6 @@ if ($id_utilisateur == 0) {
 
 <body>
   <div class="container-scroller">
-    <!-- Navbar -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.php" style="font-size:x-large;">
@@ -109,7 +105,7 @@ if ($id_utilisateur == 0) {
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
+              <i class="fa-solid fa-grip mr-4"></i>
                 Profile
               </a>
               <a class="dropdown-item" href="pages/connexion/logout.php">
@@ -123,31 +119,42 @@ if ($id_utilisateur == 0) {
     </nav>
 
     <div class="container-fluid page-body-wrapper">
-      <!-- Sidebar -->
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="index.php">
-              <i class="icon-grid menu-icon"></i>
+                <i class="ti-settings text-primary"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
+              <i class="fa-solid fa-compass mr-4"></i>
               <span class="menu-title">Liste</span>
               <i class="menu-arrow"></i>
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.php">Liste Users</a></li>
+          
               </ul>
             </div>
+          </li>
+              <li class="nav-item">
+            <a class="nav-link" href="profile.php">
+              <i class="fa-solid fa-user mr-4"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="pages/connexion/logout.php">
+                <i class="ti-power-off mr-4"></i>
+              <span class="menu-title">Logout</span>
+            </a>
           </li>
         </ul>
       </nav>
 
-      <!-- Main Panel -->
       <div class="main-panel">
         <div class="content-wrapper">
           <div class="row">

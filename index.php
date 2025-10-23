@@ -72,7 +72,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                     <div class="navbar-nav mx-auto py-0">
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="blog.php" class="nav-item nav-link">Blog</a>
+                        <a href="blog.php" class="nav-item nav-link">Activites</a>
                                            
                     </div>
                     <a href="Sign-In.php" class="btn btn-primary rounded-pill py-2 px-4 flex-shrink-0">Login</a>
@@ -86,7 +86,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                 <div class="carousel-caption">
                     <div class="container align-items-center py-4">
                         <div class="row g-5 align-items-center">
-                            <div class="col-xl-7 fadeInLeft animated" data-animation="fadeInLeft" data-delay="1s" style="animation-delay: 1s;">
+                            <div class="col-xl-7 fadeInLeft animated" >
                                 <div class="text-start">
                                     <h4 class="text-primary text-uppercase fw-bold mb-4">Bienvenue a ADA</h4>
                                     <h1 class="display-4 text-uppercase text-white mb-4">Découvrez les Meilleures Activités & Sorties</h1>
@@ -103,13 +103,52 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
             </div>
            
         </div>
-     <div class="container-fluid feature py-5">
-            <div class="container py-5">
+     <div class="container-fluid feature py-3">
+            <div class="container py-3">
                 
             </div>
         </div>
-        <div class="container-fluid about pb-5">
+         <div class="container-fluid blog pb-5">
             <div class="container pb-5">
+                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+                    <h4 class="text-primary">Notre Activite</h4>
+                    <h1 class="display-5 mb-4">Dernières Activités & Sorties</h1>
+                    <p class="mb-0">Découvrez nos toutes dernières aventures avec ADA ! Entre moments de détente, découvertes passionnantes et expériences inoubliables, chaque activité est une nouvelle occasion de partager, d’apprendre et de s’amuser ensemble. Rejoignez-nous pour vivre ces instants uniques !
+                    </p>
+                </div>
+               
+        <div class="row g-4">
+        <?php foreach($activites_confirmees as $index => $act): ?>
+            <div class="col-lg-4 wow fadeInUp" data-wow-delay="<?php echo 0.2 + ($index * 0.2); ?>s">
+                <div class="blog-item">
+            <div class="blog-img">
+                <a href="#">
+                    <img src="uploads/<?php echo htmlspecialchars($act['photo']); ?>" 
+                         class="img-fluid w-100 rounded-top" alt="Image activité">
+                </a>
+                <div class="blog-date">
+                    <i class="fas fa-clock me-2"></i>
+                    <?php echo date('d M Y', strtotime($act['dateA'])); ?>
+                </div>
+            </div>
+            <div class="blog-content p-4">
+                <a href="#" class="h4 d-inline-block mb-4"><?php echo htmlspecialchars($act['titre']); ?></a>
+                <p class="mb-4"><?php echo htmlspecialchars($act['description']); ?></p>
+               <a href="read.php?id=<?= $act['id_activite'] ?>" class="btn btn-primary rounded-pill py-2 px-4">
+               Lire plus <i class="fas fa-arrow-right ms-2"></i>
+                </a>
+
+            </div>
+        </div>
+    
+            <?php endforeach; ?>
+            </div>
+            </div>
+
+            </div>
+
+        <div class="container-fluid about pb-4 pt-4">
+            <div class="container pb-4">
                 <div class="row g-5">
                     <div class="col-xl-6 wow fadeInUp" data-wow-delay="0.2s">
                         <div>
@@ -131,32 +170,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                                         <div class="rounded mb-4">
                                             <img src="img/impo.jpg" class="img-fluid rounded w-100" alt="">
                                         </div>
-                                        <div class="row gx-4 gy-0">
-                                            <div class="col-6">
-                                                <div class="counter-item bg-primary rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-thumbs-up fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold" data-toggle="counter-up">150</span>
-                                                        <span class="h1 fw-bold text-white">K +</span>
-                                                    </div>
-                                                    <!-- <h5 class="text-white mb-0">Happy Visitors</h5> -->
-                                                </div>
-                                            </div>
-                                            <div class="col-6">
-                                                <div class="counter-item bg-dark rounded text-center p-4 h-100">
-                                                    <div class="counter-item-icon mx-auto mb-3">
-                                                        <i class="fas fa-certificate fa-3x text-white"></i>
-                                                    </div>
-                                                    <div class="counter-counting mb-3">
-                                                        <span class="text-white fs-2 fw-bold" data-toggle="counter-up">122</span>
-                                                        <span class="h1 fw-bold text-white"> +</span>
-                                                    </div>
-                                                    <!-- <h5 class="text-white mb-0">Awwards Winning</h5> -->
-                                                </div>
-                                            </div>
-                                        </div>
+                                    
                                     </div>
                                 </div>
                             </div>
@@ -260,46 +274,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-        <div class="container-fluid blog pb-5">
-            <div class="container pb-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                    <h4 class="text-primary">Notre Blog</h4>
-                    <h1 class="display-5 mb-4">Dernières Activités & Sorties</h1>
-                    <p class="mb-0">Découvrez nos toutes dernières aventures avec ADA ! Entre moments de détente, découvertes passionnantes et expériences inoubliables, chaque activité est une nouvelle occasion de partager, d’apprendre et de s’amuser ensemble. Rejoignez-nous pour vivre ces instants uniques !
-                    </p>
-                </div>
-               <div class="row g-4">
-<div class="row g-4">
-<?php foreach($activites_confirmees as $index => $act): ?>
-    <div class="col-lg-4 wow fadeInUp" data-wow-delay="<?php echo 0.2 + ($index * 0.2); ?>s">
-        <div class="blog-item">
-            <div class="blog-img">
-                <a href="#">
-                    <img src="uploads/<?php echo htmlspecialchars($act['photo']); ?>" 
-                         class="img-fluid w-100 rounded-top" alt="Image activité">
-                </a>
-                <div class="blog-date">
-                    <i class="fas fa-clock me-2"></i>
-                    <?php echo date('d M Y', strtotime($act['dateA'])); ?>
-                </div>
-            </div>
-            <div class="blog-content p-4">
-                <a href="#" class="h4 d-inline-block mb-4"><?php echo htmlspecialchars($act['titre']); ?></a>
-                <p class="mb-4"><?php echo htmlspecialchars($act['description']); ?></p>
-               <a href="read.php?id=<?= $act['id_activite'] ?>" class="btn btn-primary rounded-pill py-2 px-4">
-               Lire plus <i class="fas fa-arrow-right ms-2"></i>
-                </a>
-
-            </div>
-        </div>
-    </div>
-<?php endforeach; ?>
-</div>
-
-
-</div>
-
-            </div>
+       
         </div>
        <div class="container-fluid testimonial py-5">
     <div class="container py-5">
@@ -373,7 +348,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                             <h4 class="text-white mb-4">Liens</h4>
                             <a href="index.php"><i class="fas fa-angle-right me-2"></i> Home</a>
                             <a href="about.php"><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Blog</a>
+                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Activites</a>
                         </div>
                     </div>
                     

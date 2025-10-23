@@ -86,7 +86,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                     <div class="navbar-nav mx-auto py-0">
                         <a href="index.php" class="nav-item nav-link active">Home</a>
                         <a href="about.php" class="nav-item nav-link">About</a>
-                        <a href="blog.php" class="nav-item nav-link">Blog</a>
+                        <a href="blog.php" class="nav-item nav-link">Activites</a>
                                            
                     </div>
                     <a href="Sign-In.php" class="btn btn-primary rounded-pill py-2 px-4 flex-shrink-0">Login</a>
@@ -246,7 +246,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                             <h4 class="text-white mb-4">Liens</h4>
                             <a href="index.php"><i class="fas fa-angle-right me-2"></i> Home</a>
                             <a href="about.php"><i class="fas fa-angle-right me-2"></i> About</a>
-                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Blog</a>
+                            <a href="blog.php"><i class="fas fa-angle-right me-2"></i> Activites</a>
                         </div>
                     </div>
                     

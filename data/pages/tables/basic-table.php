@@ -42,7 +42,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Daschbord Admin</title>
+  <title>Daschbord </title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="../../vendors/feather/feather.css">
   <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
@@ -88,8 +88,8 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <img src="../../../uploads/<?php echo htmlspecialchars($user['photo_profil']); ?>" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
+              <a class="dropdown-item" href="../../profile.php">
+                <i class="fa-solid fa-user text-primary " ></i>
                 Profile
               </a>
               <a class="dropdown-item" href="../connexion/logout.php">
@@ -103,25 +103,21 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
         
       </div>
     </nav>
-    <!-- partial -->
+
     <div class="container-fluid page-body-wrapper">
-      <!-- partial:../../partials/_settings-panel.html -->
-     
-   
-      <!-- partial -->
-      <!-- partial:../../partials/_sidebar.html -->
+
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
             <a class="nav-link" href="../../index.php">
-              <i class="icon-grid menu-icon"></i>
+              <i class="fa-solid fa-grip mr-4"></i>
               <span class="menu-title">Dashboard</span>
             </a>
           </li>
          
           <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#tables" aria-expanded="false" aria-controls="tables">
-              <i class="icon-grid-2 menu-icon"></i>
+              <i class="fa-solid fa-compass mr-4"></i>
               <span class="menu-title">Liste</span>
               <i class="menu-arrow"></i>
             </a>
@@ -131,7 +127,18 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               </ul>
             </div>
           </li>
-         
+            <li class="nav-item">
+            <a class="nav-link" href="../../profile.php">
+              <i class="fa-solid fa-user mr-4"></i>
+              <span class="menu-title">Profile</span>
+            </a>
+          </li>
+             <li class="nav-item">
+            <a class="nav-link" href="../connexion/logout.php">
+                <i class="ti-power-off mr-4"></i>
+              <span class="menu-title">Logout</span>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- partial -->
