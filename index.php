@@ -282,23 +282,18 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
 
             <?php foreach ($commentaires as $c): ?>
             <div class="testimonial-item p-4">
-                <!-- Contenu du commentaire -->
                 <p class="text-white fs-4 mb-4">
                     <?= htmlspecialchars($c['contenu']) ?>
                 </p>
 
                 <div class="testimonial-inner">
                     <div class="testimonial-img">
-                        <!-- Photo de l'utilisateur (photo par défaut si vide) -->
                         <img src="<?= !empty($c['photo_profil']) ? 'uploads/' . htmlspecialchars($c['photo_profil']) : 'img/default-user.jpg' ?>"
                              class="img-fluid" alt="Image utilisateur">
                     </div>
 
                     <div class="ms-4">
-                        <!-- Nom de l'utilisateur -->
                         <h4 class="text-white"><?= htmlspecialchars($c['nom']) ?></h4>
-
-                        <!-- Affichage des étoiles -->
                         <div class="d-flex text-primary">
                             <?php
                             $note = (int)$c['note'];

@@ -9,9 +9,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
 
 $id_utilisateur = $_SESSION['id_utilisateur'];
 
-// Récupération des données actuelles
 if ($id_utilisateur == 0) {
-    // Admin
     $user = [
         'nom' => 'Administrateur',
         'email' => 'admin@gmail.com',
@@ -23,17 +21,15 @@ if ($id_utilisateur == 0) {
     $user = $stmt->fetch(PDO::FETCH_ASSOC);
 }
 
-// Traitement du formulaire
 if (isset($_POST['submit'])) {
     $nom = $_POST['nom'];
     $email = $_POST['email'];
 
-    // Gestion de la photo
     if (isset($_FILES['photo']) && $_FILES['photo']['error'] == 0) {
         $photo_name = time() . '_' . $_FILES['photo']['name'];
         move_uploaded_file($_FILES['photo']['tmp_name'], '../uploads/' . $photo_name);
     } else {
-        $photo_name = $user['photo_profil']; // garder l'ancienne photo
+        $photo_name = $user['photo_profil']; 
     }
 
     if ($id_utilisateur != 0) {
@@ -66,7 +62,6 @@ if (isset($_POST['submit'])) {
 </head>
 <body>
 <div class="container-scroller">
-    <!-- Navbar -->
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
         <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
             <a class="navbar-brand brand-logo mr-5" href="index.php" style="font-size:x-large;">
@@ -97,7 +92,6 @@ if (isset($_POST['submit'])) {
         </div>
     </nav>
 
-    <!-- Sidebar -->
     <div class="container-fluid page-body-wrapper">
         <nav class="sidebar sidebar-offcanvas" id="sidebar">
             <ul class="nav">
@@ -122,7 +116,6 @@ if (isset($_POST['submit'])) {
             </ul>
         </nav>
 
-        <!-- Main Panel -->
         <div class="main-panel">
             <div class="content-wrapper">
                 <div class="row justify-content-center">
@@ -160,7 +153,6 @@ if (isset($_POST['submit'])) {
                 </div>
             </div>
 
-            <!-- Footer -->
             <footer class="footer">
                 <div class="d-sm-flex align-items-center justify-content-center">
                     <span class="text-muted text-center text-sm-left">Copyright © 2025. ADA</span>
@@ -170,7 +162,6 @@ if (isset($_POST['submit'])) {
     </div>
 </div>
 
-<!-- JS -->
 <script src="vendors/js/vendor.bundle.base.js"></script>
 <script src="vendors/chart.js/Chart.min.js"></script>
 <script src="vendors/datatables.net/jquery.dataTables.js"></script>

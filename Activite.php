@@ -1,8 +1,7 @@
 <?php
 session_start();
-require 'config.php'; // fichier de connexion à ta base (PDO)
+require 'config.php'; 
 
-// Vérifie si l'utilisateur est connecté
 if(!isset($_SESSION['id_utilisateur'])) {
     header("Location: Sign-In.php");
     exit();
@@ -10,7 +9,7 @@ if(!isset($_SESSION['id_utilisateur'])) {
 
 
 if(isset($_POST['submit'])) {
-    $id_createur = $_SESSION['id_utilisateur']; // ID du créateur connecté
+    $id_createur = $_SESSION['id_utilisateur']; 
     $titre = $_POST['titre'];
     $lieu = $_POST['lieu'];
     $date_activite = $_POST['date_activite'];
@@ -25,12 +24,10 @@ if (!empty($_FILES['photo']['name'])) {
     $photo = null;
 }
 
-    // Préparer l'insertion
     $stmt = $pdo->prepare("INSERT INTO activites (id_createur, titre, lieu, date_activite, description, nb_places, nb_places_restantes,photo) VALUES (?, ?, ?, ?, ?, ?, ?,?)");
     
     $stmt->execute([$id_createur, $titre, $lieu, $date_activite, $description, $nb_places, $nb_places_restantes, $photo]);
 
-    // Redirection après succès
     header("Location: data/index-user.php"); 
     exit();
 }

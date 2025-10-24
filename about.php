@@ -31,7 +31,7 @@
         </div>
         <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
             <nav class="navbar navbar-expand-lg navbar-light">
-                <a href="" class="navbar-brand p-0">
+                <a href="index.php" class="navbar-brand p-0">
                     <h1 class="display-6 text-dark"><img src="img/logo.jpg" alt="">ADA</h1>
                  </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
@@ -146,9 +146,7 @@
                 </div>
             </div>
         </div>
-        <!-- Gallery End -->
-
-        <!-- Team Start -->
+  
         <div class="container-fluid team pb-5">
             <div class="container pb-5">
                 <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
@@ -261,7 +259,6 @@
     <script src="lib/owlcarousel/owl.carousel.min.js"></script>
     
 
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
     </body>
 

@@ -88,7 +88,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <img src="../../../uploads/<?php echo htmlspecialchars($user['photo_profil']); ?>" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="../../profile.php">
+              <a class="dropdown-item" href="../../profileAD.php">
                 <i class="fa-solid fa-user text-primary " ></i>
                 Profile
               </a>
@@ -124,11 +124,12 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="../../pages/tables/basic-table.php">Liste Users</a></li>
+                <li class="nav-item"> <a class="nav-link" href="mesActivite.php">Mes Activites</a></li>
               </ul>
             </div>
           </li>
             <li class="nav-item">
-            <a class="nav-link" href="../../profile.php">
+            <a class="nav-link" href="../../profileAD.php">
               <i class="fa-solid fa-user mr-4"></i>
               <span class="menu-title">Profile</span>
             </a>

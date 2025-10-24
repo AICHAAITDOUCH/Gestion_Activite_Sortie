@@ -39,6 +39,7 @@
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                             <label for="floatingPassword">Password</label>
                         </div>
+                        
                           <div class="form-floating mb-3">
                             <input type="file" class="form-control" id="file" name="photo">
                             <label for="file">Photo de Prpfil</label>
@@ -52,7 +53,6 @@
         </div>
     </div>
 </form>
-    <!-- JavaScript Libraries -->
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="lib/chart/chart.min.js"></script>
@@ -63,7 +63,6 @@
     <script src="lib/tempusdominus/js/moment-timezone.min.js"></script>
     <script src="lib/tempusdominus/js/tempusdominus-bootstrap-4.min.js"></script>
 
-    <!-- Template Javascript -->
     <script src="js/main.js"></script>
 </body>
 
@@ -81,16 +80,13 @@ if(isset($_POST['submit'])){
     $photo = $_FILES['photo']['name'];
 $tmp_name = $_FILES['photo']['tmp_name'];
 
-// Déplacer le fichier vers le dossier "uploads"
 move_uploaded_file($tmp_name, "uploads/".$photo);
 
-    // Vérifier si l'email existe déjà
     $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = ?");
     $stmt->execute([$email]);
     if($stmt->rowCount() > 0){
         echo "Cet email est déjà utilisé.";
     } else {
-        // Enregistrer l'utilisateur
         $stmt = $pdo->prepare("INSERT INTO utilisateurs (nom, email, mot_de_passe, photo_profil	) VALUES (?, ?, ?, ?)");
         $stmt->execute([$nom, $email, $mot_de_passe, $photo]);
        header("location:Sign-In.php");

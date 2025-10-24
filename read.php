@@ -95,7 +95,6 @@ if (isset($_POST['annuler']) && $deja_inscrit) {
         </nav>
     </div>
 
-    <!-- Contenu avec Card Bootstrap -->
     <div class="container py-2 d-flex justify-content-center">
         <div class="card shadow-lg border-0 rounded-4 "style="max-width: 600px;">
             <img src="uploads/<?= htmlspecialchars($activite['photo']); ?>" alt="photo" class="card-img-top rounded-top-4" style="height:300px;object-fit:cover;">
@@ -122,7 +121,6 @@ if (isset($_POST['annuler']) && $deja_inscrit) {
         </div>
     </div>
 
-    <!-- Modal Pop-up Message -->
 <?php if (isset($message)): ?>
 <div class="modal fade show" id="messageModal" tabindex="-1" 
      style="display:block;background:rgba(0,0,0,0.5);" aria-modal="true" role="dialog">

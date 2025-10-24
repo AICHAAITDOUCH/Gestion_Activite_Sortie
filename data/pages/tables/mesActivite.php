@@ -8,11 +8,17 @@ if (!isset($_SESSION['id_utilisateur'])) {
 }
 
 $id_utilisateur = $_SESSION['id_utilisateur'];
-
+if ($id_utilisateur == 0) {
+    // Cas admin
+    $user = [
+        'nom' => 'Administrateur',
+        'photo_profil' => 'team-2.jpg' // mettre le nom du fichier photo admin dans uploads
+    ];
+} else {
 $stm = $pdo->prepare("SELECT * FROM utilisateurs WHERE id_utilisateur = :id");
 $stm->execute(['id' => $id_utilisateur]);
 $user = $stm->fetch(PDO::FETCH_ASSOC);
-
+}
 // ✅ On récupère seulement les activités confirmées appartenant à cet utilisateur
 $sql = "SELECT a.* 
         FROM activites a
@@ -74,7 +80,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
 
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item" href="../../profile.php" >
+              <a class="dropdown-item" href="../../profileAD.php" >
                 <i class="fa-solid fa-user text-primary"></i>
                 Profile
               </a>
@@ -108,13 +114,14 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.php">Liste Users</a></li>
                 <li class="nav-item"> <a class="nav-link" href="../../pages/tables/table.php">Mes activites</a></li>
               </ul>
             </div>
              
           </li>
              <li class="nav-item">
-            <a class="nav-link" href="../../profile.php">
+            <a class="nav-link" href="../../profileAD.php">
               <i class="fa-solid fa-user mr-4"></i>
               <span class="menu-title">Profile</span>
             </a>
@@ -138,7 +145,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <div class="card-body">
                   <div style="display: flex; flex-direction:row; justify-content:space-between;  ">
                     <h1 class="card-title" style="color: #4B49AC; font-size:x-large; text-decoration:underline" >Liste D'activites</h1>
-                    <a href="ajouter.php" class="btn btn-primary btn-sm text-center"><i class="fa-solid fa-square-plus" style="color:white; padding-top:5px;"></i> </a>
+                    <a href="ajouter-activite.php" class="btn btn-primary btn-sm text-center"><i class="fa-solid fa-square-plus" style="color:white; padding-top:5px;"></i> </a>
                   </div>
                   
                     <div class="table-responsive">

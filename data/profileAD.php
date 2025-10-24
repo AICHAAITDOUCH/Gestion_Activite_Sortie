@@ -89,7 +89,7 @@ if ($id_utilisateur == 0) {
   <div class="container-scroller">
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo mr-5" href="index-user.php" style="font-size:x-large;">
+        <a class="navbar-brand brand-logo mr-5" href="index.php" style="font-size:x-large;">
           <img src="../img/logo.jpg" class="mr-2" alt="logo"/>ADA
         </a>
       </div>
@@ -121,7 +121,7 @@ if ($id_utilisateur == 0) {
       <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <ul class="nav">
           <li class="nav-item">
-            <a class="nav-link" href="index-user.php">
+            <a class="nav-link" href="index.php">
               <i class="fa-solid fa-grip mr-4"></i>
               <span class="menu-title">Dashboard</span>
             </a>
@@ -135,7 +135,7 @@ if ($id_utilisateur == 0) {
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.php">Liste Users</a></li>
-          
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/mesActivite.php">Mes Activites</a></li>
               </ul>
             </div>
           </li>

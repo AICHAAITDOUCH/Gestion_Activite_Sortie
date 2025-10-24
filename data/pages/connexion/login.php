@@ -8,7 +8,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
 
     // 🔹 التحقق من admin
     if ($email === "admin@gmail.com" && $mot_de_passe === "admin123") {
-        $_SESSION['id_utilisateur'] = 0; // juste pour indiquer que c’est l’admin
+        $_SESSION['id_utilisateur'] = 2; // juste pour indiquer que c’est l’admin
         $_SESSION['nom'] = "Administrateur";
 
         header("Location:../../index.php");
@@ -16,24 +16,28 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
     }
 
     // 🔹 التحقق من المستخدم العادي
-    $stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = ? AND mot_de_passe = ?");
-    $stmt->execute([$email, $mot_de_passe]);
-    $user = $stmt->fetch();
+    // 🔹 Vérifier admin
+$stmt = $pdo->prepare("SELECT * FROM utilisateurs WHERE email = ? AND mot_de_passe = ?");
+$stmt->execute([$email, $mot_de_passe]);
+$user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-    if ($user) {
-        $_SESSION['id_utilisateur'] = $user['id_utilisateur'];
-        $_SESSION['nom'] = $user['nom'];
-        $_SESSION['email'] = $user['email'];
+if ($user) {
+    $_SESSION['id_utilisateur'] = $user['id_utilisateur']; // l’ID réel
+    $_SESSION['nom'] = $user['nom'];
+    $_SESSION['email'] = $user['email'];
 
-        header("Location: ../../index-user.php");
-        exit();
+    if ($user['email'] === "admin@gmail.com") {
+        header("Location: ../../index.php"); // page admin
     } else {
-        // ❌ Email ou mot de passe incorrect
-        $_SESSION['error'] = "Email ou mot de passe incorrect.";
-        echo"erreur";
-        // header("Location: login.php");
-        exit();
+        header("Location: ../../index-user.php"); // page utilisateur normal
     }
+    exit();
+} else {
+    $_SESSION['error'] = "Email ou mot de passe incorrect.";
+    header("Location: login.php");
+    exit();
+}
+
 }
 ?>
 

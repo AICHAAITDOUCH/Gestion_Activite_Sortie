@@ -1,6 +1,6 @@
 <?php
 session_start();
-require '../../../config.php'; // fichier de connexion à ta base (PDO)
+require '../../../config.php'; // connexion PDO
 
 // Vérifie si l'utilisateur est connecté
 if(!isset($_SESSION['id_utilisateur'])) {
@@ -8,34 +8,58 @@ if(!isset($_SESSION['id_utilisateur'])) {
     exit();
 }
 
+// Récupérer l'id du créateur depuis la session
+$id_createur = $_SESSION['id_utilisateur'];
 
+// Si c’est l’admin (id = 0), on ne vérifie pas dans la table
+if($id_createur != 0) {
+    $stmt_check = $pdo->prepare("SELECT * FROM utilisateurs WHERE id_utilisateur = ?");
+    $stmt_check->execute([$id_createur]);
+    $user = $stmt_check->fetch(PDO::FETCH_ASSOC);
+
+    if(!$user) {
+        die("⚠️ Erreur : L'utilisateur connecté n'existe pas dans la base !");
+    }
+}
+
+// Gestion du formulaire
 if(isset($_POST['submit'])) {
-    $id_createur = $_SESSION['id_utilisateur']; // ID du créateur connecté
     $titre = $_POST['titre'];
     $lieu = $_POST['lieu'];
     $date_activite = $_POST['date_activite'];
     $description = $_POST['description'];
     $nb_places = $_POST['nb_places'];
     $nb_places_restantes = $nb_places;
-if (!empty($_FILES['photo']['name'])) {
-    $photo = $_FILES['photo']['name'];
-    $tmp_name = $_FILES['photo']['tmp_name'];
-    move_uploaded_file($tmp_name, "uploads/".$photo);
-} else {
-    $photo = null;
-}
 
-    // Préparer l'insertion
-    $stmt = $pdo->prepare("INSERT INTO activites (id_createur, titre, lieu, date_activite, description, nb_places, nb_places_restantes,photo) VALUES (?, ?, ?, ?, ?, ?, ?,?)");
-    
+    // 📁 Téléchargement de la photo
+    if (!empty($_FILES['photo']['name'])) {
+        $upload_dir = __DIR__ . "/uploads/";
+        if (!is_dir($upload_dir)) {
+            mkdir($upload_dir, 0777, true);
+        }
+
+        $photo = basename($_FILES['photo']['name']);
+        $tmp_name = $_FILES['photo']['tmp_name'];
+        if(!move_uploaded_file($tmp_name, $upload_dir . $photo)){
+            die("Erreur : Impossible de télécharger la photo !");
+        }
+    } else {
+        $photo = null;
+    }
+
+    // 💾 Insertion dans la table activites
+    $stmt = $pdo->prepare("
+        INSERT INTO activites 
+        (id_createur, titre, lieu, date_activite, description, nb_places, nb_places_restantes, photo) 
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?)
+    ");
     $stmt->execute([$id_createur, $titre, $lieu, $date_activite, $description, $nb_places, $nb_places_restantes, $photo]);
 
-    // Redirection après succès
-    header("Location: table.php"); 
+    header("Location: mesActivite.php"); 
     exit();
 }
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -75,7 +99,8 @@ if (!empty($_FILES['photo']['name'])) {
                     <label class="form-label">Nombre de places:</label>
                     <input type="number" name="nb_places" class="form-control" min="1" required>
                 </div>
-                  <div class="mb-3">
+
+                <div class="mb-3">
                     <label class="form-label">Photo d'activité:</label>
                     <input type="file" name="photo" class="form-control" required>
                 </div>
