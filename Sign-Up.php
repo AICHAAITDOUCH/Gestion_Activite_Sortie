@@ -26,21 +26,24 @@
                             
                             <h3 class="text-white " style="font-size:xx-large;">Sign In</h3>
                         </div>
-                         <div class="form-floating mb-3">
+                         <div class="form-floating mb-2">
                             <input type="text" class="form-control" id="Name" placeholder="Votre Name" name="name">
                             <label for="Name">Name</label>
                         </div>
-                       
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-2">
+                            <input type="text" class="form-control" id="cin" placeholder="Votre CIN" name="cin">
+                            <label for="cin">CIN</label>
+                        </div>
+                        <div class="form-floating mb-2">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
                             <label for="floatingInput">Email address</label>
                         </div>
-                        <div class="form-floating mb-4">
+                        <div class="form-floating mb-2">
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                             <label for="floatingPassword">Password</label>
                         </div>
                         
-                          <div class="form-floating mb-3">
+                          <div class="form-floating mb-2">
                             <input type="file" class="form-control" id="file" name="photo">
                             <label for="file">Photo de Prpfil</label>
                         </div>
@@ -75,6 +78,7 @@ require 'config.php';
 
 if(isset($_POST['submit'])){
     $nom = $_POST['name'];
+    $cin = $_POST['cin'];
     $email = $_POST['email'];
     $mot_de_passe = $_POST['password'];
     $photo = $_FILES['photo']['name'];
@@ -87,8 +91,8 @@ move_uploaded_file($tmp_name, "uploads/".$photo);
     if($stmt->rowCount() > 0){
         echo "Cet email est déjà utilisé.";
     } else {
-        $stmt = $pdo->prepare("INSERT INTO utilisateurs (nom, email, mot_de_passe, photo_profil	) VALUES (?, ?, ?, ?)");
-        $stmt->execute([$nom, $email, $mot_de_passe, $photo]);
+        $stmt = $pdo->prepare("INSERT INTO utilisateurs (nom, cin ,email, mot_de_passe, photo_profil	) VALUES (?, ?, ?, ?,?)");
+        $stmt->execute([$nom, $cin ,$email, $mot_de_passe, $photo]);
        header("location:Sign-In.php");
 
     }

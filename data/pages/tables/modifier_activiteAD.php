@@ -40,7 +40,7 @@ if (isset($_POST['modifier'])) {
                                 WHERE id_activite = ?");
         $stmt2->execute([$titre, $date_activite, $description, $id]);
 
-        header("Location: table.php");
+        header("Location: mesActivite.php");
         exit;
     } catch (PDOException $e) {
         echo "Erreur lors de la modification : " . $e->getMessage();
@@ -55,7 +55,6 @@ if (isset($_POST['modifier'])) {
     <title>Modifier Activité</title>
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
     <link rel="shortcut icon" href="../../../img/logo.jpg" />
-
  <style>
     label{
         color:#3cbeee ;
@@ -67,34 +66,36 @@ if (isset($_POST['modifier'])) {
         <div class="card shadow p-4">
             <h2 class="text-center">Modifier l'activité</h2>
             <form method="post">
-        <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label">Titre :</label>
-            <input type="text" name="titre" class="form-control" value="<?= htmlspecialchars($activite['titre']); ?>" >
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label">Titre :</label>
+                    <input type="text" name="titre" class="form-control" value="<?= htmlspecialchars($activite['titre']); ?>" >
+                </div>
+                    <div class="col-md-6">
+                    <label class="form-label">Lieu :</label>
+                    <input type="text" name="lieu" class="form-control" value="<?= htmlspecialchars($activite['lieu']); ?>" >
+                </div>
+                </div>
+                  <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label">Date :</label>
+                    <input type="date" name="date_activite" class="form-control" value="<?= htmlspecialchars($activite['date_activite']); ?>" >
+                </div>
+                    <div class="col-md-6">
+                    <label class="form-label">Nombre de places :</label>
+                    <input type="number" name="nb_places" class="form-control" value="<?= htmlspecialchars($activite['nb_places']); ?>" >
+                </div>
+                  </div>
+                <div class="mb-3">
+                    <label class="form-label">Description :</label>
+                    <textarea name="description" class="form-control" rows="3" ><?= htmlspecialchars($activite['description']); ?></textarea>
+                </div>
+                    <button type="submit" name="modifier" class="btn btn-success  ">Enregistrer</button>
+                    <a href="mesActivite.php" class="btn btn-secondary ">Annuler</a>
+                
+            </form>
         </div>
-          <div class="col-md-6">
-            <label class="form-label">Lieu :</label>
-            <input type="text" name="lieu" class="form-control" value="<?= htmlspecialchars($activite['lieu']); ?>" >
         </div>
         </div>
-         <div class="row mb-3">
-          <div class="col-md-6">
-            <label class="form-label">Date :</label>
-            <input type="date" name="date_activite" class="form-control" value="<?= htmlspecialchars($activite['date_activite']); ?>" >
-        </div>
-          <div class="col-md-6">
-           <label class="form-label">Nombre de places :</label>
-            <input type="number" name="nb_places" class="form-control" value="<?= htmlspecialchars($activite['nb_places']); ?>" >
-        </div>
-        </div>
-    
-        <div class="mb-3">
-            <label class="form-label">Description :</label>
-            <textarea name="description" class="form-control" rows="3" ><?= htmlspecialchars($activite['description']); ?></textarea>
-        </div>
-        <button type="submit" name="modifier" class="btn btn-success">Enregistrer</button>
-        <a href="table.php" class="btn btn-secondary">Annuler</a>
-    </form>
-</div>
-</body> 
+</body>
 </html>

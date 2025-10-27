@@ -8,6 +8,8 @@ if (!isset($_SESSION['id_utilisateur'])) {
 }
 
 $id_utilisateur = $_SESSION['id_utilisateur'];
+
+// Récupération des infos de l'utilisateur
 if ($id_utilisateur == 0) {
     // Cas admin
     $user = [
@@ -26,26 +28,26 @@ if (isset($_GET['search'])) {
     $search = trim($_GET['search']);
 }
 
-// Récupérer les activités confirmées avec search
-$sql = "SELECT a.* 
-        FROM activites a
-        INNER JOIN activites_confirmees ac ON a.id_activite = ac.id_activite
-        WHERE a.id_createur = :id_utilisateur";
+// 🔹 Récupération des activités créées par l'utilisateur connecté
+$sql = "SELECT * FROM activites WHERE id_createur = :id_utilisateur";
 
 if ($search !== '') {
-    $sql .= " AND a.titre LIKE :search";
+    $sql .= " AND titre LIKE :search";
 }
 
-$sql .= " ORDER BY a.date_activite DESC";
+$sql .= " ORDER BY date_activite DESC";
 
 $stmt = $pdo->prepare($sql);
+
 $params = ['id_utilisateur' => $id_utilisateur];
 if ($search !== '') {
     $params['search'] = "%$search%";
 }
+
 $stmt->execute($params);
 $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -114,6 +116,7 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
               <li class="nav-item"><a class="nav-link" href="basic-table.php">Liste Users</a></li>
               <li class="nav-item"><a class="nav-link" href="sortiesAD.php">Mes Activites</a></li>
               <li class="nav-item"><a class="nav-link" href="mesActivite.php">Activité confirmé </a></li>
+
             </ul>
           </div>
         </li>
@@ -122,72 +125,71 @@ $activites = $stmt->fetchAll(PDO::FETCH_ASSOC);
       </ul>
     </nav>
 
-    <div class="main-panel">
+   <div class="main-panel">
       <div class="content-wrapper">
         <div class="row">
           <div class="col-lg-12 grid-margin stretch-card">
             <div class="card">
               <div class="card-body">
-                <div style="display:flex; justify-content:space-between;">
-                  <h1 class="card-title" style="color:#4B49AC; font-size:x-large; text-decoration:underline">Liste D'activites</h1>
-                  <a href="ajouter-activite.php" class="btn btn-primary btn-sm text-center"><i class="fa-solid fa-square-plus" style="color:white; padding-top:5px;"></i></a>
-                </div>
-                <div class="table-responsive">
+                <h3 class="text-primary">Liste D'activites</h3>
+
+                <div class="table-responsive mt-3">
                   <table class="table table-striped">
                     <thead>
                       <tr class="text-center">
-                        <th>Id</th>
+                        <th>ID</th>
                         <th>Titre</th>
                         <th>Lieu</th>
                         <th>Date</th>
                         <th>Description</th>
-                        <th>Nombre de place</th>
-                        <th>NbP restant</th>
-                        <th>Action</th>
-                        <th>statu</th>
+                        <th>Nb Places</th>
+                        <th>Places Restantes</th>
+                        <th>Photo</th>
                       </tr>
                     </thead>
-<tbody>
-<?php if (empty($activites)): ?>
-  <tr><td colspan="9" class="text-center">Aucune activité confirmée pour le moment.</td></tr>
-<?php else: 
-    $i=1;
-    foreach($activites as $a): 
-
-        // Vérifier si cette activité est confirmée
-        $stmtConf = $pdo->prepare("SELECT COUNT(*) FROM activites_confirmees WHERE id_activite = ?");
-        $stmtConf->execute([$a['id_activite']]);
-        $isConfirmed = $stmtConf->fetchColumn() > 0;
-?>
-  <tr class="text-center">
-    <td><?= $i++; ?></td>
-    <td><?= htmlspecialchars($a['titre']); ?></td>
-    <td><?= htmlspecialchars($a['lieu']); ?></td>
-    <td><?= htmlspecialchars($a['date_activite']); ?></td>
-    <td><?= htmlspecialchars($a['description']); ?></td>
-    <td><?= htmlspecialchars($a['nb_places']); ?></td>
-    <td><?= htmlspecialchars($a['nb_places_restantes']); ?></td>
-    <td>
-      <a href="modifier_activiteAD.php?id=<?= $a['id_activite']; ?>" class="btn btn-warning btn-sm">
-        <i class="fa-solid fa-pen-to-square" style="color:white;"></i>
-      </a>
-      <a href="supprimer_activiteAD.php?id=<?= $a['id_activite']; ?>" class="btn btn-danger btn-sm" onclick="return confirm('Êtes-vous sûr de vouloir supprimer cette activité ?');">
-        <i class="fa-solid fa-trash" style="color:white;"></i>
-      </a>
-    </td>
-    <td>
-      <input type="checkbox" name="check" style="width:20px; height:20px;" <?= $isConfirmed ? 'checked' : ''; ?>>
-    </td>
-  </tr>
-<?php endforeach; endif; ?>
-</tbody>
-
+                    <tbody>
+                      <?php if (count($activites) > 0): ?>
+                       
+                        <?php  $i=1;
+                            foreach ($activites as $act): ?>
+                          <tr class="text-center">
+                            <td><?= $i++; ?></td>
+                            <td><?= htmlspecialchars($act['titre']); ?></td>
+                            <td><?= htmlspecialchars($act['lieu']); ?></td>
+                            <td><?= htmlspecialchars($act['date_activite']); ?></td>
+                            <td><?= htmlspecialchars($act['description']); ?></td>
+                            <td><?= htmlspecialchars($act['nb_places']); ?></td>
+                            <td><?= htmlspecialchars($act['nb_places_restantes']); ?></td>
+                            <td>
+                              <?php if (!empty($act['photo'])): ?>
+                                <img src="../../../uploads/<?= htmlspecialchars($act['photo']); ?>" alt="photo" style="width:60px; height:60px; border-radius:10px; object-fit:cover;">
+                              <?php else: ?>
+                                <span>-</span>
+                              <?php endif; ?>
+                            </td>
+                          </tr>
+                        <?php endforeach; ?>
+                      <?php else: ?>
+                        <tr><td colspan="8" class="text-center">Aucune activité trouvée</td></tr>
+                      <?php endif; ?>
+                    </tbody>
                   </table>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
+      </div>
+
+      <footer class="footer">
+        <div class="d-sm-flex align-items-center justify-content-center">
+          <span class="text-muted text-center text-sm-left">Copyright © 2025. ADA</span>
+        </div>
+      </footer>
+    </div>
+  </div>
+</div>
 
         <footer class="footer">
           <div class="d-sm-flex align-items-center justify-content-center">

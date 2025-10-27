@@ -9,7 +9,7 @@ if (!isset($_SESSION['id_utilisateur'])) {
 
 $id_utilisateur = $_SESSION['id_utilisateur'];
 
-if ($id_utilisateur == 0) {
+if ($id_utilisateur == 2) {
     $user = [
         'nom' => 'Administrateur',
         'email' => 'admin@gmail.com',
@@ -41,7 +41,7 @@ if ($id_utilisateur == 0) {
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-  <link rel="shortcut icon" href="../img/logo.jpg" />
+  <link rel="shortcut icon" href="../img/LOX.png" />
 
   <style>
     .profile-card {
@@ -90,7 +90,7 @@ if ($id_utilisateur == 0) {
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index.php" style="font-size:x-large;">
-          <img src="../img/logo.jpg" class="mr-2" alt="logo"/>ADA
+          <img src="../img/LOX.png" class="mr-2" alt="logo"/>ADA
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -103,7 +103,7 @@ if ($id_utilisateur == 0) {
               <img src="../uploads/<?php echo htmlspecialchars($user['photo_profil']); ?>" alt="profile"/>
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
+              <a class="dropdown-item" href="profileAD.php">
                 <i class="fa-solid fa-user text-primary"></i>
                 Profile
               </a>
@@ -135,12 +135,13 @@ if ($id_utilisateur == 0) {
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.php">Liste Users</a></li>
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/mesActivite.php">Mes Activites</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/sortiesAD.php">Mes Activites</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/mesActivite.php">Activité confirmé</a></li>
               </ul>
             </div>
           </li>
               <li class="nav-item">
-            <a class="nav-link" href="profile.php">
+            <a class="nav-link" href="profileAD.php">
               <i class="fa-solid fa-user mr-4"></i>
               <span class="menu-title">Profile</span>
             </a>
@@ -164,7 +165,7 @@ if ($id_utilisateur == 0) {
                 <p><i class="fa-solid fa-envelope"></i> <?php echo htmlspecialchars($user['email']); ?></p>
                 <span class="role-badge"><?php echo htmlspecialchars($user['role']); ?></span>
                 <div class="edit-btn">
-                  <a href="modifier_profil.php" class="btn btn-primary">
+                  <a href="modifier_profilAD.php" class="btn btn-primary">
                     <i class="fa-regular fa-pen-to-square"></i> Modifier le profil
                   </a>
                 </div>

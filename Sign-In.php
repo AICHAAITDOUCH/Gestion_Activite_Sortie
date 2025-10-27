@@ -58,7 +58,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
                 <div class="col-12 col-sm-8 col-md-6 col-lg-5 col-xl-4">
                     <div class=" rounded p-4 p-sm-5 my-4 mx-3" style="background-color:#6D94C5">
                         <div class="d-flex align-items-center justify-content-between mb-3">
-                            <h3 class="text-white " style="font-size:xx-large;">Sign In</h3>
+                            <h3 class="text-white " style="font-size:xx-large;">Login</h3>
                         </div>
                         <div class="form-floating mb-3">
                             <input type="email" class="form-control" id="floatingInput" placeholder="name@example.com" name="email">
@@ -68,7 +68,7 @@ if (isset($_POST['submit']) && !empty($_POST['email']) && !empty($_POST['passwor
                             <input type="password" class="form-control" id="floatingPassword" placeholder="Password" name="password">
                             <label for="floatingPassword">Password</label>
                         </div>
-                        <button type="submit"  name="submit" style="font-size:larger;"class="btn btn-primary py-3 w-100 mb-4 text-white ">Sign In</button>
+                        <button type="submit"  name="submit" style="font-size:larger;"class="btn btn-primary py-3 w-100 mb-4 text-white ">LogIn</button>
                         <p class="text-center mb-0 text-white ">Don't have an Account? <a href="Sign-Up.php" style="color:#F5EFE6; font-size:medium;">Sign Up</a></p>
                     </div>
                 </div>

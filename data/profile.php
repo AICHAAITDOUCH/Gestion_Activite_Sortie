@@ -41,7 +41,7 @@ if ($id_utilisateur == 0) {
   <link rel="stylesheet" type="text/css" href="js/select.dataTables.min.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
   <link rel="stylesheet" href="css/vertical-layout-light/style.css">
-  <link rel="shortcut icon" href="../img/logo.jpg" />
+  <link rel="shortcut icon" href="../img/LOX.png" />
 
   <style>
     .profile-card {
@@ -90,7 +90,7 @@ if ($id_utilisateur == 0) {
     <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
       <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
         <a class="navbar-brand brand-logo mr-5" href="index-user.php" style="font-size:x-large;">
-          <img src="../img/logo.jpg" class="mr-2" alt="logo"/>ADA
+          <img src="../img/LOX.png" class="mr-2" alt="logo"/>ADA
         </a>
       </div>
       <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
@@ -134,7 +134,8 @@ if ($id_utilisateur == 0) {
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="pages/tables/basic-table.php">Liste Users</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/sorties.php">Mes Activites</a></li>
+                <li class="nav-item"> <a class="nav-link" href="pages/tables/table.php">Activité confirmé</a></li>
           
               </ul>
             </div>

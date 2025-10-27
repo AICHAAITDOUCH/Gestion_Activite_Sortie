@@ -72,7 +72,6 @@ if ($user) {
             <div class="auth-form-light text-left py-5 px-4 px-sm-5">
           
               <h4>Hello! let's get started</h4>
-              <h6 class="font-weight-light">Sign in to continue.</h6>
               <form class="pt-3" action="" method="post">
                 <div class="form-group">
                   <input type="email" class="form-control form-control-lg" name="email" id="exampleInputEmail1" placeholder="Email">

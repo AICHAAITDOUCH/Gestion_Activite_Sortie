@@ -30,22 +30,19 @@ if(isset($_POST['submit'])) {
     $description = $_POST['description'];
     $nb_places = $_POST['nb_places'];
     $nb_places_restantes = $nb_places;
-
-    // 📁 Téléchargement de la photo
-    if (!empty($_FILES['photo']['name'])) {
-        $upload_dir = __DIR__ . "/uploads/";
-        if (!is_dir($upload_dir)) {
-            mkdir($upload_dir, 0777, true);
-        }
-
-        $photo = basename($_FILES['photo']['name']);
-        $tmp_name = $_FILES['photo']['tmp_name'];
-        if(!move_uploaded_file($tmp_name, $upload_dir . $photo)){
-            die("Erreur : Impossible de télécharger la photo !");
-        }
-    } else {
-        $photo = null;
+if (!empty($_FILES['photo']['name'])) {
+    $tmp_name = $_FILES['photo']['tmp_name'];
+    $photo = time() . '_' . basename($_FILES['photo']['name']); // nom unique
+    $upload_dir = '../../../uploads/'; 
+    if (!file_exists($upload_dir)) {
+        mkdir($upload_dir, 0777, true); // créer si inexistant
     }
+    if(!move_uploaded_file($tmp_name, $upload_dir . $photo)) {
+        die("Erreur lors de l'upload de la photo !");
+    }
+} else {
+    $photo = null;
+}
 
     // 💾 Insertion dans la table activites
     $stmt = $pdo->prepare("
@@ -55,7 +52,7 @@ if(isset($_POST['submit'])) {
     ");
     $stmt->execute([$id_createur, $titre, $lieu, $date_activite, $description, $nb_places, $nb_places_restantes, $photo]);
 
-    header("Location: mesActivite.php"); 
+    header("Location: sortiesAD.php"); 
     exit();
 }
 
@@ -66,46 +63,52 @@ if(isset($_POST['submit'])) {
     <meta charset="UTF-8">
     <title>Créer une Activité</title>
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+        <link rel="shortcut icon" href="../../../img/logo.jpg" />
+
+    <style>
+    label{
+        color:#3cbeee ;
+    }
+</style>
 </head>
 <body style="background-color:#f2f6fc;">
 
 <div class="container mt-5">
     <div class="col-md-6 mx-auto">
         <div class="card shadow p-4">
-            <h3 class="text-center mb-4 text-primary">Créer une nouvelle activité</h3>
+            <h3 class="text-center mb-4 ">Créer une nouvelle activité</h3>
             
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Titre:</label>
-                    <input type="text" name="titre" class="form-control" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label  " >Titre:</label>
+                    <input type="text" name="titre" class="form-control" >
+                    </div>
+                    <div class="col-md-6">
+                    <label class="form-label ">Lieu:</label>
+                    <input type="text" name="lieu" class="form-control" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Lieu:</label>
-                    <input type="text" name="lieu" class="form-control" required>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Date de l’activité:</label>
-                    <input type="date" name="date_activite" class="form-control" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label ">Date de l’activité:</label>
+                    <input type="date" name="date_activite" class="form-control" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Description:</label>
-                    <textarea name="description" rows="4" class="form-control" required></textarea>
+                    <div class="col-md-6">
+                     <label class="form-label ">Nombre de places:</label>
+                    <input type="number" name="nb_places" class="form-control" min="1" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Nombre de places:</label>
-                    <input type="number" name="nb_places" class="form-control" min="1" required>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Photo d'activité:</label>
-                    <input type="file" name="photo" class="form-control" required>
+                <div class="row mb-3">
+                   <label class="form-label ">Description:</label>
+                   <textarea name="description" rows="4" class="form-control" ></textarea>
                 </div>
-
-                <button type="submit" name="submit" class="btn btn-primary w-100">Créer</button>
+                   <div class="row mb-3">
+                    <label class="form-label ">Photo d'activité:</label>
+                    <input type="file" name="photo" class="form-control" >
+                </div>
+                <button type="submit" name="submit" class="btn btn-primary text-white">Créer</button>
+                <a href="mesActivite.php" class="btn btn-secondary">Annuler</a> </button>
             </form>
         </div>
     </div>

@@ -51,8 +51,24 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
         <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
         <link href="css/bootstrap.min.css" rel="stylesheet">
         <link href="css/style.css" rel="stylesheet">
-        <link rel="shortcut icon" href="img/logo.jpg" />
+        <link rel="shortcut icon" href="img/LOX.png" />
+<style>
+    .blog-item {
+    height: 100%;          /* Prend toute la hauteur du parent */
+    display: flex;
+    flex-direction: column;
+}
 
+.blog-content {
+    flex-grow: 1;          /* Prend l’espace restant pour égaliser la hauteur */
+}
+.blog-img img {
+    width: 100%;          /* largeur pleine de la card */
+    height: 200px;        /* fixe la hauteur */
+    object-fit: cover;    /* garde le ratio et crop si nécessaire */
+}
+
+</style>
     </head>
     <body>
         <div id="spinner" class="show bg-white position-fixed translate-middle w-100 vh-100 top-50 start-50 d-flex align-items-center justify-content-center">
@@ -63,7 +79,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
         <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <a href="" class="navbar-brand p-0">
-                    <h1 class="display-6 text-dark"><img src="img/logo.jpg" alt="">ADA</h1>
+                    <h1 class="display-6 text-dark"><img src="img/LOX.png" alt="">ADA</h1>
                  </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                     <span class="fa fa-bars"></span>
@@ -117,10 +133,10 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                     </p>
                 </div>
                
-        <div class="row g-4">
-        <?php foreach($activites_confirmees as $index => $act): ?>
-            <div class="col-lg-4 wow fadeInUp" data-wow-delay="<?php echo 0.2 + ($index * 0.2); ?>s">
-                <div class="blog-item">
+                <div class="row g-4">
+<?php foreach($activites_confirmees as $index => $act): ?>
+    <div class="col-lg-3 col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="<?php echo 0.2 + ($index * 0.1); ?>s">
+        <div class="blog-item">
             <div class="blog-img">
                 <a href="#">
                     <img src="uploads/<?php echo htmlspecialchars($act['photo']); ?>" 
@@ -134,18 +150,19 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
             <div class="blog-content p-4">
                 <a href="#" class="h4 d-inline-block mb-4"><?php echo htmlspecialchars($act['titre']); ?></a>
                 <p class="mb-4"><?php echo htmlspecialchars($act['description']); ?></p>
-               <a href="read.php?id=<?= $act['id_activite'] ?>" class="btn btn-primary rounded-pill py-2 px-4">
-               Lire plus <i class="fas fa-arrow-right ms-2"></i>
+                <a href="read.php?id=<?= $act['id_activite'] ?>" class="btn btn-primary rounded-pill py-2 px-4">
+                   Lire plus <i class="fas fa-arrow-right ms-2"></i>
                 </a>
-
             </div>
         </div>
-    
-            <?php endforeach; ?>
-            </div>
-            </div>
+    </div>
+<?php endforeach; ?>
+</div>
+</div>
+</div>
 
-            </div>
+
+
 
         <div class="container-fluid about pb-4 pt-4">
             <div class="container pb-4">
@@ -182,37 +199,7 @@ $commentaires = $stm->fetchAll(PDO::FETCH_ASSOC);
                 </div>
             </div>
         </div>
-         <div class="container-fluid attractions py-5">
-            <div class="container attractions-section py-5">
-                <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
-                    <h4 class="text-primary">Gammes</h4>
-                    <h1 class="display-5 text-white mb-4">Nos Gammes d’Activités</h1>
-                    <p class="text-white mb-0">Plongez dans un monde d’amusement et de sensations ! Découvrez nos différentes gammes d’activités : montagnes russes vertigineuses, carrousels enchanteurs, jeux d’arcade amusants et manèges suspendus. Chaque activité est pensée pour offrir plaisir, adrénaline et moments inoubliables pour petits et grands.
-                </div>
-                <div class="owl-carousel attractions-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="attractions-item wow fadeInUp" data-wow-delay="0.2s">
-                        <img src="img/attraction-1.jpg" class="img-fluid rounded w-100" alt="">
-                        <a href="#" class="attractions-name">Montagnes russes</a>
-                    </div>
-                    <div class="attractions-item wow fadeInUp" data-wow-delay="0.4s">
-                        <img src="img/attraction-2.jpg" class="img-fluid rounded w-100" alt="">
-                        <a href="#" class="attractions-name">Carrousel</a>
-                    </div>
-                    <div class="attractions-item wow fadeInUp" data-wow-delay="0.6s">
-                        <img src="img/attraction-3.jpg" class="img-fluid rounded w-100" alt="">
-                        <a href="#" class="attractions-name">Jeu d’arcade</a>
-                    </div>
-                    <div class="attractions-item wow fadeInUp" data-wow-delay="0.8s">
-                        <img src="img/attraction-4.jpg" class="img-fluid rounded w-100" alt="">
-                        <a href="#" class="attractions-name">Carrousel suspendu</a>
-                    </div>
-                    <div class="attractions-item wow fadeInUp" data-wow-delay="1s">
-                        <img src="img/attraction-2.jpg" class="img-fluid rounded w-100" alt="">
-                        <a href="#" class="attractions-name">Carousel</a>
-                    </div>
-                </div>
-            </div>
-        </div>
+       
 
         <div class="container-fluid gallery pb-5">
             <div class="container pb-5">

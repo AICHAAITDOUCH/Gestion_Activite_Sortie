@@ -71,14 +71,15 @@ if (isset($_POST['annuler']) && $deja_inscrit) {
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <link href="css/bootstrap.min.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
-    <link rel="shortcut icon" href="img/logo.jpg" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="shortcut icon" href="img/LOX.png" />
 </head>
 
 <body>
     <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
         <nav class="navbar navbar-expand-lg navbar-light">
-            <a href="" class="navbar-brand p-0">
-                <h1 class="display-6 text-dark"><img src="img/logo.jpg" alt="">ADA</h1>
+            <a href="index.php" class="navbar-brand p-0" >
+                <h1 class="display-6 text-dark"><img src="img/LOX.png" alt="">ADA</h1>
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
                 <span class="fa fa-bars"></span>
@@ -87,7 +88,7 @@ if (isset($_POST['annuler']) && $deja_inscrit) {
                 <div class="navbar-nav mx-auto py-0">
                     <a href="index.php" class="nav-item nav-link active">Home</a>
                     <a href="about.php" class="nav-item nav-link">About</a>
-                    <a href="blog.php" class="nav-item nav-link">Blog</a>
+                    <a href="blog.php" class="nav-item nav-link">Activites</a>
                 </div>
                 <a href="Sign-In.php" class="btn btn-primary rounded-pill py-2 px-4">Login</a>
                 <a href="logout.php" class="btn btn-primary rounded-pill py-2 px-4 m-2">Logout</a>
@@ -95,31 +96,39 @@ if (isset($_POST['annuler']) && $deja_inscrit) {
         </nav>
     </div>
 
-    <div class="container py-2 d-flex justify-content-center">
-        <div class="card shadow-lg border-0 rounded-4 "style="max-width: 600px;">
-            <img src="uploads/<?= htmlspecialchars($activite['photo']); ?>" alt="photo" class="card-img-top rounded-top-4" style="height:300px;object-fit:cover;">
-            <div class="card-body">
-                <h3 class="card-title mb-3"><?= htmlspecialchars($activite['titre']); ?></h3>
-                <p><?= date('d-m-Y', strtotime($activite['date_activite'])); ?></p>
-                <p> <?= htmlspecialchars($activite['lieu']); ?></p>
-                <p><?= htmlspecialchars($activite['description']); ?></p>
-                <p></p>
-                <p><?= htmlspecialchars($activite['nb_places_restantes']); ?>/<?= htmlspecialchars($activite['nb_places']); ?></p>
+<div class="container py-2 d-flex justify-content-center">
+    <div class="card shadow-lg border-0 rounded-4" style="width: 500px;">
+        <img src="uploads/<?= htmlspecialchars($activite['photo']); ?>" 
+             alt="photo" 
+             class="card-img-top rounded-top-4" 
+             style="width:500px; height:300px; object-fit:cover; object-position:center;">
+             
+        <div class="card-body">
+            <h3 class="card-title mb-3"><?= htmlspecialchars($activite['titre']); ?></h3>
+            <p><i class="fa-solid fa-calendar-days me-2 text-primary"></i><?= date('d-m-Y', strtotime($activite['date_activite'])); ?></p>
+            <p><i class="fa-solid fa-location-dot me-2 text-primary"></i><?= htmlspecialchars($activite['lieu']); ?></p>
+            <p><i class="fa-solid fa-circle-info me-2 text-primary"></i><?= htmlspecialchars($activite['description']); ?></p>
+            <p><i class="fa-solid fa-users me-2 text-primary"></i><?= htmlspecialchars($activite['nb_places_restantes']); ?>/<?= htmlspecialchars($activite['nb_places']); ?> places disponibles</p>
 
-                <?php if($deja_inscrit): ?>
-                    <form method="post">
-                        <button type="submit" name="annuler" class="btn btn-warning w-80 rounded-pill mt-3 text-white">Annuler l'inscription</button>
-                    </form>
-                <?php elseif($activite['nb_places_restantes'] == 0): ?>
-                    <button class="btn btn-danger w-100 rounded-pill mt-3" disabled>Complet</button>
-                <?php else: ?>
-                    <form method="post">
-                        <button type="submit" name="inscrire" class="btn btn-success w-80 rounded-pill mt-3">S'inscrire</button>
-                    </form>
-                <?php endif; ?>
-            </div>
+            <?php if($deja_inscrit): ?>
+                <form method="post">
+                    <button type="submit" name="annuler" class="btn-sm btn-warning w-30 rounded-pill mt-3 text-white">
+                        Annuler l'inscription
+                    </button>
+                </form>
+            <?php elseif($activite['nb_places_restantes'] == 0): ?>
+                <button class="btn btn-danger w-100 rounded-pill mt-3" disabled>Complet</button>
+            <?php else: ?>
+                <form method="post">
+                    <button type="submit" name="inscrire" class="btn-sm btn-success w-30 rounded-pill mt-3 ">
+                        S'inscrire
+                    </button>
+                </form>
+            <?php endif; ?>
         </div>
     </div>
+</div>
+
 
 <?php if (isset($message)): ?>
 <div class="modal fade show" id="messageModal" tabindex="-1" 

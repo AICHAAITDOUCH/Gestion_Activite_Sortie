@@ -27,7 +27,7 @@ $commentsStmt = $pdo->prepare("
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
     <link href="css/style.css" rel="stylesheet">
-        <link rel="shortcut icon" href="img/logo.jpg" />
+        <link rel="shortcut icon" href="img/LOX.png" />
 
     <style>
         .star-rating {
@@ -56,7 +56,7 @@ $commentsStmt = $pdo->prepare("
 <div class="container-fluid nav-bar sticky-top px-4 py-2 py-lg-0">
     <nav class="navbar navbar-expand-lg navbar-light">
         <a href="index.php" class="navbar-brand p-0">
-            <h1 class="display-6 text-dark"><img src="img/logo.jpg" alt="">ADA</h1>
+            <h1 class="display-6 text-dark"><img src="img/LOX.png" alt="">ADA</h1>
         </a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse">
             <span class="fa fa-bars"></span>
@@ -82,8 +82,11 @@ $commentsStmt = $pdo->prepare("
                     <div class="col-lg-4">
                         <div class="blog-item border rounded shadow-sm overflow-hidden">
                             <div class="blog-img position-relative">
-                                <img src="uploads/<?= htmlspecialchars($a['photo']); ?>" class="img-fluid w-100 rounded-top" alt="Image activité">
-                                <div class="blog-date ">
+                                <img src="uploads/<?= htmlspecialchars($a['photo']); ?>" 
+                                     class="img-fluid w-100 rounded-top" 
+                                     alt="Image activité"
+                                     style="height:300px; object-fit:cover; object-position:center;">
+                                <div class="blog-date">
                                     <i class="fas fa-clock me-2"></i>
                                     <?= date('d-m-Y', strtotime($a['dateA'])) ?>
                                 </div>
@@ -126,23 +129,23 @@ $commentsStmt = $pdo->prepare("
                             </div>
                         </div>
                     </div>
+
                     <div class="modal fade" id="commentModal<?= $a['id_activite'] ?>" tabindex="-1" aria-labelledby="commentModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content rounded-4 shadow">
                                 <form method="POST" action="commantaire.php">
                                     <div class="modal-header">
-                                        <h5 class="modal-title" id="commentModalLabel">Laisser un commentaire</h5>
                                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                     </div>
                                     <div class="modal-body">
                                         <input type="hidden" name="id_activite" value="<?= $a['id_activite'] ?>">
                                         <div class="mb-3">
-                                            <label for="contenu" class="form-label">Votre commentaire :</label>
+                                            <label for="contenu" class="form-label text-primary fs-5">Votre commentaire :</label>
                                             <textarea name="contenu" class="form-control" rows="3" required></textarea>
                                         </div>
                                         <div class="mb-3">
-                                            <label class="form-label">Votre note :</label><br>
-                                            <div class="star-rating  text-primary">
+                                            <label class="form-label text-primary fs-5">Votre note :</label><br>
+                                            <div class="star-rating text-primary">
                                                 <?php for($i=5; $i>=1; $i--): ?>
                                                     <input type="radio" id="star<?= $i ?>_<?= $a['id_activite'] ?>" name="note" value="<?= $i ?>" required>
                                                     <label for="star<?= $i ?>_<?= $a['id_activite'] ?>"><i class="fas fa-star "></i></label>
@@ -167,7 +170,6 @@ $commentsStmt = $pdo->prepare("
     </div>
 </div>
 
-<!-- Footer -->
 <div class="container-fluid footer py-5 wow fadeIn" data-wow-delay="0.2s">
     <div class="container py-5">
         <div class="row g-5">

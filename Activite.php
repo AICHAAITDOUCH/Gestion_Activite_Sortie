@@ -39,7 +39,7 @@ if (!empty($_FILES['photo']['name'])) {
     <meta charset="UTF-8">
     <title>Créer une Activité</title>
     <link href="css/bootstrap.min.css" rel="stylesheet">
-        <link rel="shortcut icon" href="img/logo.jpg" />
+    <link rel="shortcut icon" href="img/LOX.png" />
 <style>
     label{
         color:#3cbeee ;
@@ -49,45 +49,41 @@ if (!empty($_FILES['photo']['name'])) {
 <body style="background-color:#f2f6fc;">
 
 <div class="container mt-5">
-    <div class="col-md-8 mx-auto">
+    <div class="col-md-6 mx-auto">
         <div class="card shadow p-4">
             <h3 class="text-center mb-4 ">Créer une nouvelle activité</h3>
             
             <form action="" method="post" enctype="multipart/form-data">
                 <div class="row mb-3">
                     <div class="col-md-6">
-                    <label class="form-label fs-5 " >Titre:</label>
+                    <label class="form-label  " >Titre:</label>
                     <input type="text" name="titre" class="form-control" >
                     </div>
                     <div class="col-md-6">
-                    <label class="form-label fs-5">Lieu:</label>
+                    <label class="form-label ">Lieu:</label>
                     <input type="text" name="lieu" class="form-control" >
                 </div>
                 </div>
                 <div class="row mb-3">
                     <div class="col-md-6">
-                    <label class="form-label fs-5">Date de l’activité:</label>
+                    <label class="form-label ">Date de l’activité:</label>
                     <input type="date" name="date_activite" class="form-control" >
                 </div>
                     <div class="col-md-6">
-                     <label class="form-label fs-5">Nombre de places:</label>
+                     <label class="form-label ">Nombre de places:</label>
                     <input type="number" name="nb_places" class="form-control" min="1" >
                 </div>
                 </div>
                 <div class="row mb-3">
-                    <div class="col-md-6">
-                   <label class="form-label fs-5">Description:</label>
+                   <label class="form-label ">Description:</label>
                    <textarea name="description" rows="4" class="form-control" ></textarea>
                 </div>
-                  <div class="col-md-6 mt-5">
-                    <label class="form-label fs-5">Photo d'activité:</label>
+                <div class="row mb-3">
+                    <label class="form-label ">Photo d'activité:</label>
                     <input type="file" name="photo" class="form-control" >
                 </div>
-                </div>
-                 <div class="d-flex flex-row justify-content-center align-items-center gap-5 mt-5">
-                <button type="submit" name="submit" class="btn-sm btn-primary w-30 text-white">Créer</button>
-                <button class="btn-sm btn-success w-30"><a href="index.php" style="text-decoration: none; color:snow">Annuler</a> </button>
-                 </div>   
+                <button type="submit" name="submit" class="btn btn-primary text-white">Créer</button>
+               <a href="index.php"  class="btn btn-secondary">Annuler</a> 
             </form>
         </div>
     </div>

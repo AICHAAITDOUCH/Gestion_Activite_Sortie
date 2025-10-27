@@ -31,7 +31,7 @@ if (!empty($_FILES['photo']['name'])) {
     $stmt->execute([$id_createur, $titre, $lieu, $date_activite, $description, $nb_places, $nb_places_restantes, $photo]);
 
     // Redirection après succès
-    header("Location: table.php"); 
+    header("Location: sorties.php"); 
     exit();
 }
 ?>
@@ -40,47 +40,54 @@ if (!empty($_FILES['photo']['name'])) {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Créer une Activité</title>
+    <title>Daschbord</title>
     <link href="../../../css/bootstrap.min.css" rel="stylesheet">
+    <link rel="shortcut icon" href="../../../img/logo.jpg" />
+
+    <style>
+    label{
+        color:#3cbeee ;
+    }
+</style>
 </head>
 <body style="background-color:#f2f6fc;">
 
 <div class="container mt-5">
     <div class="col-md-6 mx-auto">
         <div class="card shadow p-4">
-            <h3 class="text-center mb-4 text-primary">Créer une nouvelle activité</h3>
+            <h3 class="text-center mb-4 ">Créer une nouvelle activité</h3>
             
             <form action="" method="post" enctype="multipart/form-data">
-                <div class="mb-3">
-                    <label class="form-label">Titre:</label>
-                    <input type="text" name="titre" class="form-control" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label  " >Titre:</label>
+                    <input type="text" name="titre" class="form-control" >
+                    </div>
+                    <div class="col-md-6">
+                    <label class="form-label ">Lieu:</label>
+                    <input type="text" name="lieu" class="form-control" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Lieu:</label>
-                    <input type="text" name="lieu" class="form-control" required>
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Date de l’activité:</label>
-                    <input type="date" name="date_activite" class="form-control" required>
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                    <label class="form-label ">Date de l’activité:</label>
+                    <input type="date" name="date_activite" class="form-control" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Description:</label>
-                    <textarea name="description" rows="4" class="form-control" required></textarea>
+                    <div class="col-md-6">
+                     <label class="form-label ">Nombre de places:</label>
+                    <input type="number" name="nb_places" class="form-control" min="1" >
                 </div>
-
-                <div class="mb-3">
-                    <label class="form-label">Nombre de places:</label>
-                    <input type="number" name="nb_places" class="form-control" min="1" required>
                 </div>
-                  <div class="mb-3">
-                    <label class="form-label">Photo d'activité:</label>
-                    <input type="file" name="photo" class="form-control" required>
+                <div class="row mb-3">
+                   <label class="form-label ">Description:</label>
+                   <textarea name="description" rows="4" class="form-control" ></textarea>
                 </div>
-
-                <button type="submit" name="submit" class="btn btn-primary w-100">Créer</button>
+                <div class="row mb-3">
+                    <label class="form-label ">Photo d'activité:</label>
+                    <input type="file" name="photo" class="form-control" >
+                </div>
+                <button type="submit" name="submit" class="btn btn-success text-white">Créer</button>
+                <a href="table.php" class="btn btn-secondary" >Annuler</a> 
             </form>
         </div>
     </div>
